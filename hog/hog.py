@@ -138,6 +138,7 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
             score0, score1 = score1, score0
 
         player = other(player)
+        say = say(score0, score1)
     # END PROBLEM 5
     return score0, score1
 
