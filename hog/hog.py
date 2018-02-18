@@ -393,7 +393,13 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 4  # Replace this statement
+    if score >= GOAL_SCORE - 10 and score > opponent_score:
+        return swap_strategy(score, opponent_score, 3, 1)
+
+    if score > opponent_score and opponent_score > GOAL_SCORE / 2:
+        return swap_strategy(score, opponent_score, 11, 5)
+
+    return swap_strategy(score, opponent_score, 10, 6)
     # END PROBLEM 12
 
 
