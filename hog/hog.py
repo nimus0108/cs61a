@@ -220,19 +220,20 @@ def announce_highest(who, previous_high=0, previous_score=0):
         else:
             current_score = score1
 
+        diff_max = previous_high
         score_diff = current_score - previous_score
 
-        if score_diff > previous_high:
+        if score_diff > diff_max:
             if score_diff == 1:
                 point = "point!"
             else:
                 point = "points!"
             print(score_diff, point, "That's the biggest gain yet for Player",
                 who)
-            
-            return announce_highest(who, score_diff, current_score)
 
-        return announce_highest(who, previous_high, current_score)
+            diff_max = score_diff
+
+        return announce_highest(who, diff_max, current_score)
 
     return say
     # END PROBLEM 7
