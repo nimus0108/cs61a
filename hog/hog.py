@@ -377,7 +377,13 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 4  # Replace this statement
+    diff = free_bacon(opponent_score)
+    swaped = is_swap(score + diff, opponent_score)
+
+    if (swaped and score < opponent_score) or (not swaped and diff >= margin):
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 11
 
 
