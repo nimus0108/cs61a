@@ -103,4 +103,18 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
+    def cycle_through(n):
+        funs = [f1, f2, f3]
+
+        def final_cycle(x):
+            count = 0
+
+            while count < n:
+                x = funs[count % 3](x)
+                count += 1
+
+            return x
+
+        return final_cycle
+    
+    return cycle_through
