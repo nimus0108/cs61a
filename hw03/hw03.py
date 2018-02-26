@@ -24,7 +24,12 @@ def has_seven(k):
     ...       ['Assign', 'AugAssign'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    if k == 0:
+        return False
+    elif k % 10 == 7:
+        return True
+    else:
+        return has_seven(k // 10)
 
 def summation(n, term):
 
