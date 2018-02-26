@@ -177,7 +177,16 @@ def make_repeater(f, n):
     >>> make_repeater(square, 0)(5)
     5
     """
-    "*** YOUR CODE HERE ***"
+    def repeater(x):
+        count = 0
+
+        while count < n:
+            x = f(x)
+            count +=1
+
+        return x
+
+    return repeater
 
 def compose1(f, g):
     """Return a function h, such that h(x) = f(g(x))."""
