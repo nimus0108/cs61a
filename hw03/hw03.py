@@ -150,7 +150,10 @@ def filtered_accumulate(combiner, base, pred, n, term):
     True
     """
     def combine_if(x, y):
-        "*** YOUR CODE HERE ***"
+        if not pred(x):
+            return y
+        else:
+            return combiner(x, y)
     return accumulate(combine_if, base, n, term)
 
 def odd(x):
