@@ -199,7 +199,8 @@ def compose1(f, g):
 ###################
 
 quine = """
-"*** YOUR CODE HERE ***"
+def quine():
+    s='s={!r};print(s.format(s))';print(s.format(s))
 """
 
 def zero(f):
