@@ -86,9 +86,7 @@ def accumulate(combiner, base, n, term):
     >>> accumulate(mul, 2, 3, square)   # 2 * 1^2 * 2^2 * 3^2
     72
     """
-    if n == 1:
-        return combiner(term(n), base)
-    elif n < 1:
+    if n == 0:
         return base
     else:
         return combiner(term(n), accumulate(combiner, base, n - 1, term))
@@ -186,7 +184,7 @@ def make_repeater(f, n):
 
         return x
 
-    return repeater
+    return  accumulate(compose1, lambda x: x, n, lambda x: f)
 
 def compose1(f, g):
     """Return a function h, such that h(x) = f(g(x))."""
