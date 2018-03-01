@@ -91,8 +91,21 @@ def roll_at_least(score, n, dice=six_sided):
 
 @memoize
 def roll_at_least_ones(total, n, dice):
-    "*** YOUR CODE HERE ***"
+    if total != 1 or n <= 0:
+        return 0
+    else:
+        return dice(1) + (1 - dice(1)) * roll_at_least_ones(1, n - 1, dice)
 
 @memoize
 def roll_at_least_no_ones(total, n, dice):
-    "*** YOUR CODE HERE ***"
+    if n == 0:
+        return total <= 0
+    else:
+        outcome = 2
+        chance = 0
+
+        while outcome <= 6:
+            chance += dice(outcome) * roll_at_least_no_ones(total - outcome, n - 1, dice)
+            outcome += 1
+
+        return chance
