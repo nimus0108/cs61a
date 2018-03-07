@@ -33,4 +33,13 @@ def hailstone(n):
     >>> a
     7
     """
-    "*** YOUR CODE HERE ***"
+    print(n)
+    
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        n //= 2
+    else:
+        n = 3 * n + 1
+
+    return hailstone(n) + 1
