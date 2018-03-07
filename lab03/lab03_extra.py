@@ -30,7 +30,19 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
+    funs = [f1, f2, f3]
+
+    def cycle_through(n):
+        def inner_cycle(x):
+            count = 0
+
+            while count < n:
+                x = funs[count % len(funs)](x)
+                count += 1
+            
+            return x
+        return inner_cycle
+    return cycle_through
 
 ## Lambda expressions
 
