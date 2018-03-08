@@ -91,7 +91,15 @@ def is_prime(n):
     >>> is_prime(521)
     True
     """
-    "*** YOUR CODE HERE ***"
+    def is_prime(x):
+        if x <= 1:
+            return True
+        elif n % x == 0:
+            return False
+        else:
+            return is_prime(x - 1)
+
+    return is_prime(n - 1)
 
 def interleaved_sum(n, odd_term, even_term):
     """Compute the sum odd_term(1) + even_term(2) + odd_term(3) + ..., up
