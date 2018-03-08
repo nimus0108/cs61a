@@ -61,9 +61,9 @@ def is_palindrome(n):
     True
     """
     x, y = n, 0
-    f = lambda: _____
+    f = lambda: 10 * y + x % 10
     while x > 0:
-        x, y = _____, f()
+        x, y = x // 10, f()
     return y == n
 
 ## More recursion practice
