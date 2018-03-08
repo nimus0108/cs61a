@@ -76,8 +76,8 @@ def skip_mul(n):
     >>> skip_mul(8) # 8 * 6 * 4 * 2
     384
     """
-    if n == 2:
-        return 2
+    if n == 2 or n == 1:
+        return n
     else:
         return n * skip_mul(n - 2)
 
