@@ -109,7 +109,18 @@ def interleaved_sum(n, odd_term, even_term):
     ... interleaved_sum(5, lambda x: x, lambda x: x*x)
     29
     """
-    "*** YOUR CODE HERE ***"
+    def helper(total, count, is_even, odd_term, even_term):
+        if count > n:
+            return total
+        elif is_even == 0:
+            total += odd_term(count)
+        else:
+            total += even_term(count)
+
+        return helper(total, count + 1, 1 - is_even, odd_term, even_term)
+
+    return helper(0, 1, 0, odd_term, even_term)
+
 
 def ten_pairs(n):
     """Return the number of ten-pairs within positive integer n.
