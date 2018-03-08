@@ -132,4 +132,16 @@ def ten_pairs(n):
     >>> ten_pairs(9641469)
     6
     """
-    "*** YOUR CODE HERE ***"
+    if n == 0:
+        return 0
+    else:
+        return ten_pairs_helper(n // 10, n % 10) + ten_pairs( n // 10)
+
+
+def ten_pairs_helper(n, target):
+    if n == 0:
+        return 0
+    elif n % 10 + target == 10:
+        return 1 + ten_pairs_helper(n // 10, target)
+    else:
+        return ten_pairs_helper(n // 10, target)
