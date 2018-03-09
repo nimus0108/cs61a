@@ -39,7 +39,8 @@ def squares(s):
     >>> squares(seq)
     []
     """
-    "*** YOUR CODE HERE ***"
+    from math import sqrt
+    return [round(sqrt(x)) for x in s if round(sqrt(x)) ** 2 ==  x]
 
 def g(n):
     """Return the value of G(n), computed recursively.
