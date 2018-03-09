@@ -126,6 +126,15 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    def term(count, value, step):
+        if count > n:
+            return value
+        elif count % 7 == 0 or has_seven(count):
+            return term(count + 1, value + step, -step)
+        else:
+            return term(count + 1, value + step, step)
+
+    return term(1, 0, 1)
 
 def has_seven(k):
     """Returns True if at least one of the digits of k is a 7, False otherwise.
