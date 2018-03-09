@@ -60,6 +60,10 @@ def g(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n <= 3:
+        return n
+    else:
+        return g(n - 1) + 2 * g(n - 2) + 3 * g(n - 3)
 
 def g_iter(n):
     """Return the value of G(n), computed iteratively.
@@ -79,6 +83,16 @@ def g_iter(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n <= 3:
+        return n
+    else:
+        count, p, pp, ppp = 3, 3, 2, 1
+        
+        while count < n:
+            p, pp, ppp = p + 2 * pp + 3 * ppp, p, pp
+            count += 1
+
+        return p
 
 def pingpong(n):
     """Return the nth element of the ping-pong sequence.
