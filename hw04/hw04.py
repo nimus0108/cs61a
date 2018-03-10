@@ -180,12 +180,25 @@ def count_change(amount):
         else:
             return count(amount - worth, worth) + count(amount, worth // 2)
 
-    worth = 1
+    def count_alt(amount, worth):
+        if amount == 0:
+            return 1
+        elif amount < 0 or amount < worth:
+            return 0
+        else:
+            return count_alt(amount - worth, worth) + count_alt(amount, worth * 2)
 
-    while worth < amount:
-        worth *= 2
+    # Return the largest power of two less than n
+    def largest_two_power(n):
+        p = 1
 
-    return count(amount, worth)
+        while p < n:
+            p *= 2
+
+        return p // 2
+
+    # return count(amount, largest_two_power(amount))
+    return count_alt(amount, 1)
 
 ###################
 # Extra Questions #
