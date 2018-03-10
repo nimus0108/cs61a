@@ -172,6 +172,20 @@ def count_change(amount):
     9828
     """
     "*** YOUR CODE HERE ***"
+    def count(amount, worth):
+        if amount == 0:
+            return 1
+        elif amount < 0 or worth == 0:
+            return 0
+        else:
+            return count(amount - worth, worth) + count(amount, worth // 2)
+
+    worth = 1
+
+    while worth < amount:
+        worth *= 2
+
+    return count(amount, worth)
 
 ###################
 # Extra Questions #
