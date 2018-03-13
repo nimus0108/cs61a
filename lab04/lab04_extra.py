@@ -215,7 +215,24 @@ def check_win_row(board, max_rows, max_cols, num_connect, row, player):
     >>> check_win_row(board, rows, columns, num_connect, 3, 'O')   # We only detect wins for the given player
     False
     """
-    "*** YOUR CODE HERE ***"
+    # if row is invalid
+    if row < 0 or row > max_rows:
+        return False
+
+    # if row if valid
+    count = 0
+    for col in range(max_cols):
+        current = get_piece(board, row, col)
+
+        if current == player:
+            count += 1
+
+            if count == num_connect:
+                return True
+        else:
+            count = 0
+
+    return False
 
 def check_win_column(board, max_rows, max_cols, num_connect, col, player):
     """ Returns True if the given player has a vertical win in the given column,
@@ -240,7 +257,27 @@ def check_win_column(board, max_rows, max_cols, num_connect, col, player):
     >>> check_win_column(board, rows, columns, num_connect, 1, 'X')
     False
     """
-    "*** YOUR CODE HERE ***"
+    # if col is invalid
+    if col < 0 or col >= max_cols:
+        return False
+
+    # if col is valid
+    count, win = 0, False
+
+    for row in range(max_rows):
+        current = get_piece(board, row, col)
+
+        if current == player:
+            count += 1
+            
+            if count == num_connect:
+                win = True
+                break
+        else:
+            count = 0
+
+    return win
+
 
 def check_win(board, max_rows, max_cols, num_connect, row, col, player):
     """Returns True if the given player has any kind of win after placing a
