@@ -64,7 +64,7 @@ def create_row(size):
     >>> create_row(5)
     ['-', '-', '-', '-', '-']
     """
-    "*** YOUR CODE HERE ***"
+    return ['-'] * size
 
 
 def create_board(rows, columns):
@@ -73,7 +73,7 @@ def create_board(rows, columns):
     >>> create_board(3, 5)
     [['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-']]
     """
-    "*** YOUR CODE HERE ***"
+    return [create_row(columns) for _ in range(rows)]
 
 
 def replace_elem(lst, index, elem):
