@@ -14,7 +14,11 @@ def if_this_not_that(i_list, this):
     4
     5
     """
-    "*** YOUR CODE HERE ***"
+    for i in i_list:
+        if i > this:
+            print(i)
+        else:
+            print('that')
 
 # City ADT
 def make_city(name, lat, lon):
