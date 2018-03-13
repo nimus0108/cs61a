@@ -88,7 +88,8 @@ def replace_elem(lst, index, elem):
     False
     """
     assert index >= 0 and index < len(lst), 'Index is out of bounds'
-    "*** YOUR CODE HERE ***"
+
+    return lst[:index] + [elem] + lst[index + 1:]
 
 
 def get_piece(board, row, column):
