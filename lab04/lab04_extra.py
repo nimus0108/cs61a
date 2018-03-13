@@ -313,7 +313,8 @@ def check_win(board, max_rows, max_cols, num_connect, row, col, player):
     """
     diagonal_win = check_win_diagonal(board, max_rows, max_cols, num_connect,
                                       row, col, player)
-    "*** YOUR CODE HERE ***"
+
+    return diagonal_win or check_win_row(board, max_rows, max_cols, num_connect, row, player) or check_win_column(board, max_rows, max_cols, num_connect, col, player)
 
 ###############################################################
 ### Functions for reference when solving the other problems ###
