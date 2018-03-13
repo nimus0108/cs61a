@@ -190,7 +190,8 @@ def print_board(board, max_rows, max_cols):
     - -
     X -
     """
-    "*** YOUR CODE HERE ***"
+    for row in range(max_rows):
+        print(' '.join([get_piece(board, row, col) for col in range(max_cols)]))
 
 def check_win_row(board, max_rows, max_cols, num_connect, row, player):
     """ Returns True if the given player has a horizontal win
