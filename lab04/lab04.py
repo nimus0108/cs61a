@@ -90,7 +90,12 @@ def closer_city(lat, lon, city1, city2):
     >>> closer_city(41.29, 174.78, bucharest, vienna)
     'Bucharest'
     """
-    "*** YOUR CODE HERE ***"
+    temp = make_city("temp", lat, lon)
+    dist1 = distance(temp, city1)
+    dist2 = distance(temp, city2)
+    closer = city1 if dist1 < dist2 else city2
+
+    return get_name(closer)
 
 # Q6
 # This is another implementation of the City ADT. Make sure
