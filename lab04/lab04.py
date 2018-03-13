@@ -102,7 +102,7 @@ def closer_city(lat, lon, city1, city2):
 # your code works for both the previous and the following versions
 # of the constructor and selectors!
 #
-# make_city = lambda name, lat, lon: [lon, [lat], name]
-# get_name = lambda city: city[2]
-# get_lat = lambda city: city[1][0]
-# get_lon = lambda city: city[0]
+make_city = lambda name, lat, lon: [lon, [lat], name]
+get_name = lambda city: city[2]
+get_lat = lambda city: city[1][0]
+get_lon = lambda city: city[0]
