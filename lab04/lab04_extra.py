@@ -38,7 +38,22 @@ def merge(lst1, lst2):
     >>> merge([5, 7], [2, 4, 6])
     [2, 4, 5, 6, 7]
     """
-    "*** YOUR CODE HERE ***"
+    def merge_helper(result, lst1, lst2):
+        if len(lst1) == 0:
+            result.extend(lst2)
+            return result
+        elif len(lst2) == 0:
+            result.extend(lst1)
+            return result
+        elif lst1[0] > lst2[0]:
+            result.append(lst2[0])
+            return merge_helper(result, lst1[:], lst2[1:])
+        else:
+            result.append(lst1[0])
+            return merge_helper(result, lst1[1:], lst2[:])
+    
+    return merge_helper([], lst1, lst2)
+
 
 ######################
 ### Connect N Game ###
