@@ -39,11 +39,9 @@ def merge(lst1, lst2):
     [2, 4, 5, 6, 7]
     """
     def merge_helper(result, lst1, lst2):
-        if len(lst1) == 0:
-            result.extend(lst2)
-            return result
-        elif len(lst2) == 0:
+        if len(lst1) == 0 or len(lst2) == 0:
             result.extend(lst1)
+            result.extend(lst2)
             return result
         elif lst1[0] > lst2[0]:
             result.append(lst2[0])
