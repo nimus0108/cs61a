@@ -48,7 +48,8 @@ def group_by_centroid(restaurants, centroids):
     restaurants closest to the same centroid.
     """
     # BEGIN Question 4
-    "*** YOUR CODE HERE ***"
+    lst = [[find_closest(restaurant_location(rst), centroids), rst] for rst in restaurants]
+    return group_by_first(lst)
     # END Question 4
 
 
