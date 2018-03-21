@@ -167,7 +167,7 @@ def search(query, restaurants):
     restaurants -- A sequence of restaurants
     """
     # BEGIN Question 10
-    "*** YOUR CODE HERE ***"
+    return [rst for rst in restaurants if query in restaurant_categories(rst)]
     # END Question 10
 
 
