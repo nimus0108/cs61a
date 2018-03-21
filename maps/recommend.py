@@ -147,7 +147,15 @@ def rate_all(user, restaurants, feature_fns):
     predictor = best_predictor(user, ALL_RESTAURANTS, feature_fns)
     reviewed = user_reviewed_restaurants(user, restaurants)
     # BEGIN Question 9
-    "*** YOUR CODE HERE ***"
+    ratings = {restaurant_name(rst): user_rating(user, restaurant_name(rst)) for rst in reviewed}
+
+    ratings_predicted = {restaurant_name(rst): predictor(rst) for rst in restaurants if restaurant_name(rst) not in ratings}
+
+    ratings.update(ratings_predicted)
+
+    return ratings
+
+    return ratings
     # END Question 9
 
 
