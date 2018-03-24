@@ -184,15 +184,19 @@ def end(s):
 def weight(size):
     """Construct a weight of some size."""
     assert size > 0
-    "*** YOUR CODE HERE ***"
+
+    return tree(size)
 
 def size(w):
     """Select the size of a weight."""
-    "*** YOUR CODE HERE ***"
+    assert is_weight(w), 'must call size on a weight'
+
+    return label(w)
 
 def is_weight(w):
     """Whether w is a weight, not a mobile."""
-    "*** YOUR CODE HERE ***"
+    
+    return is_leaf(w) and type(label(w)) == int
 
 def examples():
     t = mobile(side(1, weight(2)),
