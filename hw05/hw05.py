@@ -108,6 +108,9 @@ def print_move(origin, destination):
     """Print instructions to move a disk."""
     print("Move the top disk from rod", origin, "to rod", destination)
 
+def mediate(start, end):
+    return 6 - start -end
+
 def move_stack(n, start, end):
     """Print the moves required to move n disks on the start pole to the end
     pole without violating the rules of Towers of Hanoi.
@@ -136,7 +139,14 @@ def move_stack(n, start, end):
     Move the top disk from rod 1 to rod 3
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
-    "*** YOUR CODE HERE ***"
+
+    if n == 1:
+        print_move(start, end)
+    else:
+        med = mediate(start, end)
+        move_stack(n - 1, start, med)
+        print_move(start, end)
+        move_stack(n - 1, med, end)
 
 ###########
 # Mobiles #
