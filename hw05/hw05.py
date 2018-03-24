@@ -196,7 +196,7 @@ def size(w):
 def is_weight(w):
     """Whether w is a weight, not a mobile."""
     
-    return is_leaf(w) and type(label(w)) == int
+    return not is_mobile(w) and  is_leaf(w) and type(label(w)) == int
 
 def examples():
     t = mobile(side(1, weight(2)),
@@ -241,7 +241,25 @@ def balanced(m):
     >>> balanced(mobile(side(1, w), side(1, v)))
     False
     """
-    "*** YOUR CODE HERE ***"
+
+    def balanced_helper(m):
+        if is_weight(m):
+            return True, size(m)
+        else:
+            assert is_mobile, "must call balanced on a mobile"
+
+            l_side, r_side = sides(m)
+
+            l_balanced, l_weight = balanced_helper(end(l_side))
+            r_balanced, r_weight = balanced_helper(end(r_side))
+
+            if l_balanced and r_balanced and length(l_side) * l_weight == length(r_side) * r_weight:
+                return True, l_weight + r_weight
+            else:
+                return False, 0
+
+    return balanced_helper(m)[0]
+
 
 #######
 # OOP #
