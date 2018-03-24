@@ -94,7 +94,15 @@ def replace_leaf(t, old, new):
     >>> laerad == yggdrasil # Make sure original tree is unmodified
     True
     """
-    "*** YOUR CODE HERE ***"
+    assert is_tree(t)
+
+    def replace(t):
+        if is_leaf(t) and label(t) == old:
+            return tree(new)
+        else:
+            return tree(label(t), [replace(b) for b in branches(t)])
+
+    return replace(t)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
