@@ -6,7 +6,7 @@ def map(fn, seq):
     >>> map(lambda x: x*x, [1, 2, 3])
     [1, 4, 9]
     """
-    "*** YOUR CODE HERE ***"
+    return [fn(s) for s in seq]
 
 def filter(pred, seq):
     """Keeps elements in seq only if they satisfy pred.
@@ -14,7 +14,8 @@ def filter(pred, seq):
     >>> filter(lambda x: x % 2 == 0, [1, 2, 3, 4])
     [2, 4]
     """
-    "*** YOUR CODE HERE ***"
+
+    return [s for s in seq if pred(s)]
 
 def reduce(combiner, seq):
     """Combines elements in seq using combiner.
@@ -26,7 +27,12 @@ def reduce(combiner, seq):
     >>> reduce(lambda x, y: x * y, [4])
     4
     """
-    "*** YOUR CODE HERE ***"
+    result = seq[0]
+
+    for i in range(1, len(seq)):
+        result = combiner(result, seq[i])
+
+    return result
 
 # Q3
 def acorn_finder(t):
