@@ -169,4 +169,25 @@ def add_trees(t1, t2):
         5
       5
     """
-    "*** YOUR CODE HERE ***"
+    if t1 == None:
+        return copy_tree(t2)
+    elif t2 == None:
+        return copy_tree(t1)
+    else:
+        b1, b2 = branches(t1), branches(t2)
+        l1, l2 = len(b1), len(b2)
+        new_branches = []
+
+        for i in range(max(l1, l2)):
+            if i < l1 and i < l2:
+                new_t1, new_t2 = b1[i], b2[i]
+            elif i >= l1:
+                new_t1, new_t2 = None, b2[i]
+            else:
+                new_t1, new_t2 = b1[i], None
+
+            new_branches.append(add_trees(new_t1, new_t2))
+
+        return tree(label(t1) + label(t2), new_branches)
+
+from lab05 import copy_tree
