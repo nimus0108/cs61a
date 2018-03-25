@@ -49,7 +49,14 @@ def acorn_finder(t):
     >>> acorn_finder(numbers)
     False
     """
-    "*** YOUR CODE HERE ***"
+    if label(t) == 'acorn':
+        return True
+    else:
+        for branch in branches(t):
+            if acorn_finder(branch):
+                return True
+
+        return False
 
 # Q4
 def replace_leaf(t, old, new):
