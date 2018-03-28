@@ -56,7 +56,11 @@ class Player(object):
         """
         if type(person) != str:
             print('Person has to be a string.')
-        "*** YOUR CODE HERE ***"
+        elif person not in self.place.characters:
+            print(person, 'is not here.')
+        else:
+            character = self.place.characters[person]
+            print(person, 'says:', character.talk())
 
 
     def take(self, thing):
