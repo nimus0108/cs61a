@@ -167,7 +167,7 @@ class Player(object):
         
         if key == None:
             print(place, "can't be unlocked without a key!")
-        elif self.place != self.place.get_neighbor(place):
+        else:
             key.use(self.place.get_neighbor(place))
 
 
