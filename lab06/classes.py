@@ -163,7 +163,12 @@ class Player(object):
         for item in self.backpack:
             if type(item) == Key:
                 key = item
-        "*** YOUR CODE HERE ***"
+                break
+        
+        if key == None:
+            print(place, "can't be unlocked without a key!")
+        elif self.place != self.place.get_neighbor(place):
+            key.use(self.place.get_neighbor(place))
 
 
 class Character(object):
@@ -183,7 +188,14 @@ class Thing(object):
     def use(self, place):
         print("You can't use a {0} here".format(self.name))
 
-""" Implement Key here! """
+class Key(Thing):
+    def use(self, place):
+        if not place.locked:
+            print(place.name, 'is already unlocked!')
+        else:
+            place.locked = False
+            print(place.name, 'is now unlocked!')
+
 
 class Treasure(Thing):
     def __init__(self, name, description, value, weight):
