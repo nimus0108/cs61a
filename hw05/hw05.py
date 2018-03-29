@@ -382,7 +382,18 @@ def make_counter():
     >>> c('b') + c2('b')
     5
     """
-    "*** YOUR CODE HERE ***"
+    d = dict()
+
+    def counter(s):
+        if s not in d:
+            return d.setdefault(s, 1)
+        else:
+            times = d[s] + 1
+            d[s] = times
+
+            return times
+
+    return counter
 
 def make_fib():
     """Returns a function that returns the next Fibonacci number
