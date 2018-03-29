@@ -568,7 +568,12 @@ def mul_interval(x, y):
 def sub_interval(x, y):
     """Return the interval that contains the difference between any value in x
     and any value in y."""
-    "*** YOUR CODE HERE ***"
+    lower_y = lower_bound(y)
+    upper_y = upper_bound(y)
+
+    minus_y = interval(-upper_y, -lower_y)
+
+    return add_interval(x, minus_y)
 
 def div_interval(x, y):
     """Return the interval that contains the quotient of any value in x divided by
