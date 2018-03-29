@@ -516,7 +516,18 @@ def make_joint(withdraw, old_password, new_password):
     >>> make_joint(w, 'hax0r', 'hello')
     "Your account is locked. Attempts: ['my', 'secret', 'password']"
     """
-    "*** YOUR CODE HERE ***"
+    error = withdraw(0, old_password)
+
+    def joint_withdraw(amount, passphrase):
+        if passphrase == new_password:
+            return withdraw(amount, old_password)
+        else:
+            return withdraw(amount, passphrase)
+
+    if type(error) == str:
+        return error
+    else:
+        return joint_withdraw
 
 ###################
 # Extra Questions #
