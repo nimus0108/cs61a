@@ -439,7 +439,7 @@ def make_withdraw(balance, password):
     >>> error
     'Incorrect password'
     >>> new_bal = w(25, 'hax0r')
-    >>> new
+    >>> new_bal
     50
     >>> w(75, 'a')
     'Incorrect password'
@@ -454,7 +454,29 @@ def make_withdraw(balance, password):
     >>> type(w(10, 'l33t')) == str
     True
     """
-    "*** YOUR CODE HERE ***"
+    wrong_passwords = []
+    wrong_times = 0
+
+    def withdraw(amount, passphrase):
+        nonlocal wrong_times, balance
+
+        if wrong_times < 3:
+            if passphrase == password:
+                if amount < balance:
+                    balance -= amount
+
+                    return balance
+                else:
+                    return 'Insufficient funds'
+            else:
+                wrong_times += 1
+                wrong_passwords.append(passphrase)
+
+                return 'Incorrect password'
+        else:
+            return "Your account is locked. Attempts: {}".format(wrong_passwords)
+
+    return withdraw
 
 def make_joint(withdraw, old_password, new_password):
     """Return a password-protected withdraw function that has joint access to
