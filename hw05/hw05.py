@@ -648,4 +648,71 @@ def polynomial(x, c):
     '18.0 to 23.0'
     """
     "*** YOUR CODE HERE ***"
+    def f(x):
+        result = 0
 
+        for order, coefficient in enumerate(c):
+            result += coefficient * x ** order
+
+        return result
+
+    def df(x):
+        result = 0
+
+        for order, coefficient in enumerate(c):
+            if order >= 1:
+                result += order * coefficient * x ** (order - 1)
+
+        return result
+
+    def ddf(x):
+        result = 0
+
+        for order, coefficient in enumerate(c):
+            if order >= 2:
+                result += order * (order - 1) * coefficient * x ** (order - 2)
+
+        return result
+
+    num_step = 1000
+    lower, upper = lower_bound(x), upper_bound(x)
+    step = (upper - lower) / num_step
+    candidates = [lower, upper]
+    start = lower
+
+    for i in range(num_step):
+        zero = find_zero(df, ddf, start)
+        start += step
+        
+        if lower < zero < upper:
+            candidates.append(zero)
+
+    fs = list(map(f, candidates))
+
+    # print(fs)
+
+    return interval(min(fs), max(fs))
+
+def near_equal(num, target, tolerance = 1e-30):
+    return abs(num - target) < tolerance
+
+def improve(update, close, guess, max_iteration = 500):
+    iteration = 0
+
+    while not close(guess) and iteration < max_iteration:
+        guess = update(guess)
+        iteration += 1
+
+    return guess
+
+def find_zero(f, df, guess = 1):
+    def near_zero(x):
+        return near_equal(f(x), 0)
+
+    return improve(newton_update(f, df), near_zero, guess)
+
+def newton_update(f, df):
+    def update(x):
+        return x - f(x) / df(x)
+
+    return update
