@@ -623,7 +623,18 @@ def quadratic(x, a, b, c):
     >>> str_interval(quadratic(interval(1, 3), 2, -3, 1))
     '0 to 10'
     """
-    "*** YOUR CODE HERE ***"
+    lower_x, upper_x = lower_bound(x), upper_bound(x)
+    extreme = -b / (2 * a)
+    f = lambda x: a * x ** 2 + b * x + c
+
+    if lower_x < extreme < upper_x:
+        candidates = [lower_x, extreme, upper_x]
+    else:
+        candidates = [lower_x, upper_x]
+
+    results = list(map(f, candidates))
+
+    return interval(min(results), max(results))
 
 def polynomial(x, c):
     """Return the interval that is the range of the polynomial defined by
