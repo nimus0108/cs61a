@@ -605,12 +605,14 @@ def check_par():
     >>> lower_bound(x) != lower_bound(y) or upper_bound(x) != upper_bound(y)
     True
     """
-    r1 = interval(1, 1) # Replace this line!
-    r2 = interval(1, 1) # Replace this line!
+    r1 = interval(1, 6) # Replace this line!
+    r2 = interval(3, 4) # Replace this line!
     return r1, r2
 
 def multiple_references_explanation():
-    return """The multiple reference problem..."""
+    return """When we encounter the same variable multiple times
+    in evaluating par1 and treat they having different values.
+    Thus, evaluating with par1 produce looser error bounds."""
 
 def quadratic(x, a, b, c):
     """Return the interval that is the range of the quadratic defined by
