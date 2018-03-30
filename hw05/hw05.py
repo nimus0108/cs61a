@@ -535,6 +535,8 @@ def make_joint(withdraw, old_password, new_password):
 
 def interval(a, b):
     """Construct an interval from a to b."""
+    assert a <= b
+
     return [a, b]
 
 def lower_bound(x):
