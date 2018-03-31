@@ -248,6 +248,7 @@ class FireAnt(Ant):
     name = 'Fire'
     damage = 3
     # BEGIN Problem 5
+    food_cost = 5
     implemented = False   # Change to True to view in the GUI
     # END Problem 5
 
@@ -257,7 +258,11 @@ class FireAnt(Ant):
         the current place.
         """
         # BEGIN Problem 5
-        "*** YOUR CODE HERE ***"
+        if self.armor <= amount:
+            for bee in list(self.place.bees):
+                bee.reduce_armor(self.damage)
+
+        super().reduce_armor(amount)
         # END Problem 5
 
 
