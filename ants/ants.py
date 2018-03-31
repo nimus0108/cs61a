@@ -249,7 +249,7 @@ class FireAnt(Ant):
     damage = 3
     # BEGIN Problem 5
     food_cost = 5
-    implemented = True   # Change to True to view in the GUI
+    implemented = False   # Change to True to view in the GUI
     # END Problem 5
 
     def reduce_armor(self, amount):
@@ -318,22 +318,29 @@ class HungryAnt(Ant):
     """
     name = 'Hungry'
     # BEGIN Problem 6
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 4
+    implemented = True   # Change to True to view in the GUI
+    time_to_digest = 3
     # END Problem 6
 
     def __init__(self):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        self.digesting = 0
+        super().__init__()
         # END Problem 6
 
     def eat_bee(self, bee):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        self.digesting = self.time_to_digest
+        bee.reduce_armor(bee.armor)
         # END Problem 6
 
     def action(self, colony):
         # BEGIN Problem 6
-        "*** YOUR CODE HERE ***"
+        if self.digesting > 0:
+            self.digesting -= 1
+        elif len(self.place.bees) != 0:
+            self.eat_bee(random_or_none(self.place.bees))
         # END Problem 6
 
 
