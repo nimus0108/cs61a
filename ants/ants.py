@@ -249,7 +249,7 @@ class FireAnt(Ant):
     damage = 3
     # BEGIN Problem 5
     food_cost = 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 5
 
     def reduce_armor(self, amount):
