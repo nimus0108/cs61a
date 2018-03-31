@@ -335,6 +335,10 @@ class NinjaAnt(Ant):
 
 # BEGIN Problem 12
 # The ScubaThrower class
+class ScubaThrower(ThrowerAnt):
+    watersafe = True
+    food_cost = 6
+    name = 'Scuba'
 # END Problem 12
 
 
