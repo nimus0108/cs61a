@@ -395,12 +395,16 @@ class TankAnt(BodyguardAnt):
     name = 'Tank'
     damage = 1
     # BEGIN Problem 10
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 6
+    implemented = True   # Change to True to view in the GUI
     # END Problem 10
 
     def action(self, colony):
         # BEGIN Problem 10
-        "*** YOUR CODE HERE ***"
+        super().action(colony)
+
+        for b in list(self.place.bees):
+            b.reduce_armor(self.damage)
         # END Problem 10
 
 # BEGIN Problem 13
