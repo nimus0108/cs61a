@@ -67,24 +67,25 @@ class Place(object):
         if insect.is_ant:
             # Special handling for QueenAnt
             # BEGIN Problem 13
-            "*** YOUR CODE HERE ***"
             # END Problem 13
 
             # Special handling for BodyguardAnt
             if self.ant is insect:
                 if hasattr(self.ant, 'container') and self.ant.container:
                     self.ant = self.ant.ant
-                else:
+                elif not isinstance(insect, QueenAnt) or not insect.is_true_queen():
                     self.ant = None
             else:
                 if hasattr(self.ant, 'container') and self.ant.container and self.ant.ant is insect:
-                    self.ant.ant = None
+                    if not isinstance(insect, QueenAnt) or not insect.is_true_queen():
+                        self.ant.ant = None
                 else:
                     assert False, '{0} is not in {1}'.format(insect, self)
         else:
             self.bees.remove(insect)
 
-        insect.place = None
+        if not isinstance(insect, QueenAnt) or not insect.is_true_queen():
+            insect.place = None
 
     def __str__(self):
         return self.name
@@ -172,6 +173,7 @@ class Ant(Insect):
 
     def __init__(self, armor=1):
         """Create an Ant with an ARMOR quantity."""
+        self.doubled = False
         Insect.__init__(self, armor)
 
     def can_contain(self, other):
@@ -417,19 +419,27 @@ class TankAnt(BodyguardAnt):
         # END Problem 10
 
 # BEGIN Problem 13
-class QueenAnt(Ant):  # You should change this line
+class QueenAnt(ScubaThrower):  # You should change this line
 # END Problem 13
     """The Queen of the colony. The game is over if a bee enters her place."""
 
     name = 'Queen'
     # BEGIN Problem 13
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 7
+    implemented = True   # Change to True to view in the GUI
+    true_queen = None
     # END Problem 13
 
     def __init__(self):
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        if QueenAnt.true_queen == None:
+            QueenAnt.true_queen = self
+
+        super().__init__()
         # END Problem 13
+
+    def is_true_queen(self):
+        return QueenAnt.true_queen == self
 
     def action(self, colony):
         """A queen ant throws a leaf, but also doubles the damage of ants
@@ -438,15 +448,38 @@ class QueenAnt(Ant):  # You should change this line
         Impostor queens do only one thing: reduce their own armor to 0.
         """
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        if self.is_true_queen():
+            # True Queen
+            super().action(colony)
+
+            p = self.place.exit
+
+            while p != None:
+                self.double_damage(p.ant)
+
+                if p.ant != None and p.ant.container:
+                    self.double_damage(p.ant.ant)
+
+                p = p.exit
+        else:
+            # An imposter
+            self.reduce_armor(self.armor)
         # END Problem 13
+
+    def double_damage(self, ant):
+        if ant != None and not ant.doubled:
+            ant.damage *= 2
+            ant.doubled = True
 
     def reduce_armor(self, amount):
         """Reduce armor by AMOUNT, and if the True QueenAnt has no armor
         remaining, signal the end of the game.
         """
         # BEGIN Problem 13
-        "*** YOUR CODE HERE ***"
+        super().reduce_armor(amount)
+
+        if self.is_true_queen() and self.armor <= 0:
+            bees_win()
         # END Problem 13
 
 class AntRemover(Ant):
