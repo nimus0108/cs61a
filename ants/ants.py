@@ -496,28 +496,54 @@ class AntRemover(Ant):
 # Status Effects #
 ##################
 
-def make_slow(action):
+def make_slow(bee, duration):
     """Return a new action method that calls ACTION every other turn.
 
     action -- An action method of some Bee
     """
     # BEGIN Problem EC
-    "*** YOUR CODE HERE ***"
+    original = bee.action
+
+    def new_action(colony):
+        nonlocal duration
+
+        duration -= 1
+
+        if colony.time % 2 == 0:
+            original(colony)
+
+        if duration == 0:
+            bee.action = original
+
+    return new_action
     # END Problem EC
 
-def make_stun(action):
+def make_stun(bee, duration):
     """Return a new action method that does nothing.
 
     action -- An action method of some Bee
     """
     # BEGIN Problem EC
-    "*** YOUR CODE HERE ***"
+    original = bee.action
+
+    def new_action(colony):
+        nonlocal duration
+
+        duration -= 1
+
+        if duration == 0:
+            bee.action = original
+
+    return new_action
     # END Problem EC
 
 def apply_effect(effect, bee, duration):
     """Apply a status effect to a BEE that lasts for DURATION turns."""
     # BEGIN Problem EC
     "*** YOUR CODE HERE ***"
+    # print('apply_effect')
+    bee.action = effect(bee, duration)
+    # print(bee.action)
     # END Problem EC
 
 
@@ -526,7 +552,8 @@ class SlowThrower(ThrowerAnt):
 
     name = 'Slow'
     # BEGIN Problem EC
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 4
+    implemented = True   # Change to True to view in the GUI
     # END Problem EC
 
     def throw_at(self, target):
@@ -539,7 +566,8 @@ class StunThrower(ThrowerAnt):
 
     name = 'Stun'
     # BEGIN Problem EC
-    implemented = False   # Change to True to view in the GUI
+    food_cost = 6
+    implemented = True   # Change to True to view in the GUI
     # END Problem EC
 
     def throw_at(self, target):
