@@ -36,6 +36,15 @@ class Fib():
 
     def next(self):
         "*** YOUR CODE HERE ***"
+        if hasattr(self, 'previous'):
+            new_val = self.previous + self.value
+        else:
+            new_val = 1 + self.value
+
+        new_fib = Fib(new_val)
+        new_fib.previous = self.value
+
+        return new_fib
 
     def __repr__(self):
         return str(self.value)
