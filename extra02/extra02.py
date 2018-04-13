@@ -62,10 +62,18 @@ def quadratic(a, b, c):
 def add_fns(f_and_df, g_and_dg):
     """Return the sum of two polynomials."""
     "*** YOUR CODE HERE ***"
+    return lambda x, derive: f_and_df(x, derive) + g_and_dg(x, derive)
 
 def mul_fns(f_and_df, g_and_dg):
     """Return the product of two polynomials."""
     "*** YOUR CODE HERE ***"
+    def product(x, derive):
+        if not derive:
+            return f_and_df(x, False) * g_and_dg(x, False)
+        else:
+            return f_and_df(x, True) * g_and_dg(x, False) + f_and_df(x, False) * g_and_dg(x, True)
+
+    return product
 
 def poly_zero(f_and_df):
     """Return a zero of polynomial f_and_df, which returns:
@@ -79,6 +87,13 @@ def poly_zero(f_and_df):
     -3.0
     """
     "*** YOUR CODE HERE ***"
+    def f(x):
+        return f_and_df(x, False)
+    def df(x):
+        return f_and_df(x, True)
+
+    return find_zero(f, df)
+
 
 # Huffman encoding trees
 
