@@ -186,16 +186,16 @@ def decode_one(tree, code):
     [0, 1, 1, 1, 1]
     """
     "*** YOUR CODE HERE ***"
-    def helper(tree, code, length = 0):
+    def decode_helper(tree, code, length = 0):
         if is_huffman_leaf(tree):
             del code[:length]
             return letter(tree)
         elif code[length] == 0:
-            return helper(branches(tree)[0], code, length + 1)
+            return decode_helper(branches(tree)[0], code, length + 1)
         else:
-            return helper(branches(tree)[1], code, length + 1)
+            return decode_helper(branches(tree)[1], code, length + 1)
 
-    return helper(tree, code)
+    return decode_helper(tree, code)
 
 def encodings(tree):
     """Return all encodings in a TREE as a dictionary that maps symbols to
@@ -212,16 +212,16 @@ def encodings(tree):
     [1, 1, 1, 1]
     """
     "*** YOUR CODE HERE ***"
-    def helper(tree, lst = [], d = {}):
+    def encoding_helper(tree, lst = [], d = {}):
         if is_huffman_leaf(tree):
             d[letter(tree)] = lst
         else:
             b = branches(tree)
-            helper(b[0], lst + [0], d)
-            helper(b[1], lst + [1], d)
+            encoding_helper(b[0], lst + [0], d)
+            encoding_helper(b[1], lst + [1], d)
 
     d, lst = {}, []
-    helper(tree, lst, d)
+    encoding_helper(tree, lst, d)
 
     return d
 
@@ -241,6 +241,21 @@ def huffman(frequencies):
     frequencies.sort(key=lambda freq: freq[1]) # lowest frequencies first
     leaves = [huffman_leaf(letter, freq) for letter, freq in frequencies]
     "*** YOUR CODE HERE ***"
+    comparing_key = lambda tree: weight(tree)
+    
+    def huffman_helper(trees):
+        if len(trees) == 1:
+            return trees
+        else:
+            trees.sort(key = comparing_key)
+            new_tree = huffman_tree(trees[0], trees[1])
+
+            trees[1] = new_tree
+            del trees[0]
+
+            return huffman_helper(trees)
+
+    return huffman_helper(leaves)[0]
 
 def huffman_wiki():
     """Return a Huffman encoding tree for the text of the Huffman coding page
