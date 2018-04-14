@@ -344,6 +344,25 @@ def inform_all_except(source, message, constraints):
         if c != source:
             c[message]()
 
+def make_binary_constraint(a, b, from_a_to_b, from_b_to_a):
+    def new_value():
+        av, bv = [connector['has_val']() for connector in (a, b)]
+
+        if av:
+            b['set_val'](constraint, from_a_to_b(a['val']))
+        elif bv:
+            a['set_val'](constraint, from_b_to_a(b['val']))
+    def forget_value():
+        for connector in (a, b):
+            connector['forget'](constraint)
+
+    constraint = {'new_val':new_value, 'forget':forget_value}
+
+    for connector in (a, b):
+        connector['connect'](constraint)
+
+    return constraint
+
 def squarer(a, b):
     """The constraint that a*a=b.
 
@@ -360,6 +379,9 @@ def squarer(a, b):
     X = 4.0
     """
     "*** YOUR CODE HERE ***"
+    from math import sqrt
+    square = lambda x: x ** 2
+    return make_binary_constraint(a, b, square, sqrt)
 
 def pythagorean(a, b, c):
     """Connect a, b, and c into a network for the Pythagorean theorem:
