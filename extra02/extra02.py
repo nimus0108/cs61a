@@ -186,6 +186,16 @@ def decode_one(tree, code):
     [0, 1, 1, 1, 1]
     """
     "*** YOUR CODE HERE ***"
+    def helper(tree, code, length = 0):
+        if is_huffman_leaf(tree):
+            del code[:length]
+            return letter(tree)
+        elif code[length] == 0:
+            return helper(branches(tree)[0], code, length + 1)
+        else:
+            return helper(branches(tree)[1], code, length + 1)
+
+    return helper(tree, code)
 
 def encodings(tree):
     """Return all encodings in a TREE as a dictionary that maps symbols to
