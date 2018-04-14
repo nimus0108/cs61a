@@ -155,6 +155,15 @@ def letters(tree):
     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     """
     "*** YOUR CODE HERE ***"
+    if is_huffman_leaf(tree):
+        return [letter(tree)]
+    else:
+        result = []
+
+        for branch in branches(tree):
+            result.extend(letters(branch))
+
+        return result
 
 def decode(tree, code):
     """Decode CODE, a list of 0's and 1's using the Huffman encoding TREE.
