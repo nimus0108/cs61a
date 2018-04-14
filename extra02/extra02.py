@@ -396,3 +396,9 @@ def pythagorean(a, b, c):
     B = 12.0
     """
     "*** YOUR CODE HERE ***"
+    x, y, z = [connector() for _ in range(3)]
+
+    for pair in zip((a, b, c), (x, y ,z)):
+        squarer(pair[0], pair[1])
+
+    adder(x, y, z)
