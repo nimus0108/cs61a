@@ -212,6 +212,18 @@ def encodings(tree):
     [1, 1, 1, 1]
     """
     "*** YOUR CODE HERE ***"
+    def helper(tree, lst = [], d = {}):
+        if is_huffman_leaf(tree):
+            d[letter(tree)] = lst
+        else:
+            b = branches(tree)
+            helper(b[0], lst + [0], d)
+            helper(b[1], lst + [1], d)
+
+    d, lst = {}, []
+    helper(tree, lst, d)
+
+    return d
 
 def huffman(frequencies):
     """Return a Huffman encoding for FREQUENCIES, a list of (symbol,
