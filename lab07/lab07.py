@@ -20,7 +20,14 @@ def link_to_list(link):
 
         return result
 
-    return link_to_list_iterative(link)
+    def link_to_list_recursive(link):
+        if link is Link.empty:
+            return []
+        else:
+            return [link.first] + link_to_list_recursive(link.rest)
+
+    # return link_to_list_iterative(link)
+    return link_to_list_recursive(link)
 
 # Q4
 def store_digits(n):
