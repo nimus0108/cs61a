@@ -107,3 +107,16 @@ def reverse_other(t):
     Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
     """
     "*** YOUR CODE HERE ***"
+    reverse_other_helper(t, 0)
+
+def reverse_other_helper(t, level):
+    if t.is_leaf():
+        return
+    elif level % 2 == 0:
+        labels = [b.label for b in t.branches]
+
+        for index, label in enumerate(reversed(labels)):
+            t.branches[index].label = label
+
+    for b in t.branches:
+        reverse_other_helper(b, level + 1)
