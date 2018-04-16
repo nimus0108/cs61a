@@ -72,6 +72,15 @@ def cumulative_sum(t):
     Tree(16, [Tree(8, [Tree(5)]), Tree(7)])
     """
     "*** YOUR CODE HERE ***"
+    if t.is_leaf():
+        pass
+    else:
+        for b in t.branches:
+            cumulative_sum(b)
+
+        label = t.label + sum([b.label for b in t.branches])
+
+        t.label = label
 
 # Linked List Class
 class Link:
