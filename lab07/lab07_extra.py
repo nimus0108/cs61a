@@ -42,6 +42,14 @@ def deep_map_mut(fn, link):
     <9 <16> 25 36>
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return
+    elif isinstance(link.first, Link):
+        deep_map_mut(fn, link.first)
+    else:
+        link.first = fn(link.first)
+    
+    deep_map_mut(fn, link.rest)
 
 # Q8
 def has_cycle(link):
