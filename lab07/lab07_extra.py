@@ -18,6 +18,15 @@ def remove_all(link , value):
     <0 1>
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty or link.rest is Link.empty:
+        return
+    elif link.rest.first == value:
+        rest = link.rest
+        link.rest = rest.rest
+        remove_all(link, value)
+    else:
+        remove_all(link.rest, value)
+
 
 # Q7
 def deep_map_mut(fn, link):
