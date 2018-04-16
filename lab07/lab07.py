@@ -42,6 +42,24 @@ def store_digits(n):
     Link(8, Link(7, Link(6)))
     """
     "*** YOUR CODE HERE ***"
+    if n < 10:
+        return Link(n)
+    else:
+        first, rest = most_significant(n)
+
+        return Link(first, store_digits(rest))
+
+def most_significant(n):
+    '''n is a positive integer larger than 10'''
+    upper = 10
+    
+    while n // upper > 9:
+        upper *= 10
+        
+    first = n // upper
+    rest = n - first * upper
+
+    return first, rest
 
 # Q5
 def cumulative_sum(t):
