@@ -11,6 +11,16 @@ def link_to_list(link):
     []
     """
     "*** YOUR CODE HERE ***"
+    def link_to_list_iterative(link):
+        result = []
+
+        while not link is Link.empty:
+            result.append(link.first)
+            link = link.rest
+
+        return result
+
+    return link_to_list_iterative(link)
 
 # Q4
 def store_digits(n):
