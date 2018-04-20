@@ -252,11 +252,10 @@ def long_paths(tree, n):
         if n <= 0:
             return [Link(tree.label)]
         else:
-            return [Link.empty]
+            return []
     else:
         return [Link(tree.label, rest) for rest in \
-                sum([long_paths(b, n - 1) for b in tree.branches], []) \
-                if rest is not Link.empty]
+                sum([long_paths(b, n - 1) for b in tree.branches], [])]
 
 # Orders of Growth
 def zap(n):
