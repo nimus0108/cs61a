@@ -147,8 +147,17 @@ def trade(first, second):
     m, n = 1, 1
 
     "*** YOUR CODE HERE ***"
+    sum_first, sum_second = first[0], second[0]
 
-    if False: # change this line!
+    while sum_first != sum_second and m < len(first) and n < len(second):
+        if sum_first > sum_second:
+            sum_second += second[n]
+            n += 1
+        else:
+            sum_first += first[m]
+            m += 1
+
+    if m < len(first) and n < len(second): # change this line!
         first[:m], second[:n] = second[:n], first[:m]
         return 'Deal!'
     else:
