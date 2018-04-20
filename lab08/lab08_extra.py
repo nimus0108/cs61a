@@ -180,6 +180,15 @@ def make_to_string(front, mid, back, empty_repr):
     '()'
     """
     "*** YOUR CODE HERE ***"
+    def printer(lst):
+        assert isinstance(lst, Link) or lst is Link.empty
+
+        if lst is Link.empty:
+            return empty_repr
+        else:
+            return front + str(lst.first) + mid + printer(lst.rest) + back
+
+    return printer
 
 def tree_map(fn, t):
     """Maps the function fn over the entries of t and returns the
