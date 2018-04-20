@@ -92,6 +92,33 @@ def make_advanced_counter_maker():
     1
     """
     "*** YOUR CODE HERE ***"
+    global_counter = 0
+
+    def counter_maker():
+        def counter_helper():
+            local_counter = 0
+
+            def counter(move):
+                nonlocal global_counter, local_counter
+
+                if move == 'count':
+                    local_counter += 1
+                    return local_counter
+                elif move == 'reset':
+                    local_counter = 0
+                elif move == 'global-count':
+                    global_counter += 1
+                    return global_counter
+                elif move == 'global-reset':
+                    global_counter = 0
+                else:
+                    return 'Unknown instruction!'
+
+            return counter
+
+        return counter_helper()
+
+    return counter_maker
 
 # Lists
 def trade(first, second):
