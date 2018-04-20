@@ -37,9 +37,12 @@ class Keyboard:
         """Takes in a position of the button pressed, and
         returns that button's output"""
         "*** YOUR CODE HERE ***"
-        button = self.buttons[info]
-        button.pressed += 1
-        return button.key
+        if info in self.buttons:
+            button = self.buttons[info]
+            button.pressed += 1
+            return button.key
+        else:
+            return ''
 
     def typing(self, typing_input):
         """Takes in a list of positions of buttons pressed, and
