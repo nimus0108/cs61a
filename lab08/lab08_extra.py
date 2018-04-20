@@ -26,16 +26,31 @@ class Keyboard:
 
     def __init__(self, *args):
         "*** YOUR CODE HERE ***"
+        self.buttons = {}
+
+        for button in args:
+            assert isinstance(button, Button)
+
+            self.buttons[button.pos] = button
 
     def press(self, info):
         """Takes in a position of the button pressed, and
         returns that button's output"""
         "*** YOUR CODE HERE ***"
+        button = self.buttons[info]
+        button.pressed += 1
+        return button.key
 
     def typing(self, typing_input):
         """Takes in a list of positions of buttons pressed, and
         returns the total output"""
         "*** YOUR CODE HERE ***"
+        result = ''
+
+        for typing in typing_input:
+            result += self.press(typing)
+
+        return result
 
 class Button:
     def __init__(self, pos, key):
