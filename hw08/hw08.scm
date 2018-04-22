@@ -80,8 +80,9 @@
 
 (define (intersect s t)
     (cond ((or (empty? s) (empty? t)) nil)
-          'YOUR-CODE-HERE
-          (else nil) ; replace this line
+          ((= (car s) (car t)) (cons (car s) (intersect (cdr s) (cdr t))))
+          ((> (car s) (car t)) (intersect s (cdr t)))
+          (else (intersect (cdr s) t)) ; replace this line
           ))
 
 ; Equivalent Python code, for your reference:
@@ -101,6 +102,7 @@
 (define (union s t)
     (cond ((empty? s) t)
           ((empty? t) s)
-          'YOUR-CODE-HERE
-          (else nil) ; replace this line
+          ((= (car s) (car t)) (cons (car s) (union (cdr s) (cdr t))))
+          ((> (car s) (car t)) (cons (car t) (union s (cdr t))))
+          (else (cons (car s) (union (cdr s) t))) ; replace this line
           ))
