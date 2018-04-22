@@ -28,7 +28,12 @@
 )
 
 (define (ordered? s)
-  'YOUR-CODE-HERE
+  (cond
+    ((null? s) #t)
+    ((null? (cdr s)) #t)
+    ((> (car s) (car (cdr s))) #f)
+    (else (ordered? (cdr s)))
+  )
 )
 
 (define (nodots s)
