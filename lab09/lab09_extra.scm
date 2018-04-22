@@ -41,7 +41,12 @@
 (define (max a b) (if (> a b) a b))
 (define (min a b) (if (> a b) b a))
 (define (gcd a b)
-  'YOUR-CODE-HERE
+  (cond
+    ((equal? a 0) b)
+    ((equal? b 0) a)
+    ((equal? (modulo a b) 0) b)
+    (else (gcd b (modulo a b)))
+  )
 )
 
 ;;; Tests
