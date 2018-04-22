@@ -20,7 +20,11 @@
 (define (square x) (* x x))
 
 (define (pow b n)
-  'YOUR-CODE-HERE
+  (cond
+    ((= n 0) 1)
+    ((odd? n) (* b (pow b (- n 1))))
+    (else (square (pow b (quotient n 2))))
+  )
 )
 
 (define (ordered? s)
