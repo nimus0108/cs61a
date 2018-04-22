@@ -57,7 +57,24 @@
 
 ; Q9
 (define (no-repeats s)
-  'YOUR-CODE-HERE
+  (no-repeats-helper '() s)
+)
+
+(define (no-repeats-helper p n)
+  (cond
+    ((null? n) p)
+    ((in p (car n)) (no-repeats-helper p (cdr n)))
+    (else (no-repeats-helper (append p (list (car n))) (cdr n)))
+  )
+)
+
+; Check whether an item is in a list
+(define (in lst item)
+  (cond
+    ((null? lst) #f)
+    ((= (car lst) item) #t)
+    (else (in (cdr lst) item))
+  )
 )
 
 ; Q10
