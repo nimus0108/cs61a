@@ -3,7 +3,19 @@
 
 ; Q5
 (define lst
-  '((1) 2 (3 . 4) 5)
+  (cons
+    (cons
+      1 
+      nil)
+    (cons
+      2
+      (cons
+        (cons 
+          3 
+          4)
+        (cons
+          5
+          nil))))
 )
 
 ; Q6
