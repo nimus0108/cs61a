@@ -57,7 +57,11 @@
 
 ; Q9
 (define (no-repeats s)
-  (no-repeats-helper '() s)
+  (cond
+    ((null? s) s)
+    (else (cons (car s) (no-repeats (
+      filter (lambda (x) (not (= x (car s)))) (cdr s)))))
+  )
 )
 
 (define (no-repeats-helper p n)
