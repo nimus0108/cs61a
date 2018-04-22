@@ -25,7 +25,7 @@
 
 ; Q7
 (define (remove item lst)
-  'YOUR-CODE-HERE
+  (filter (lambda (x) (not (eq? x item))) lst)
 )
 
 
