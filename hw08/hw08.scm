@@ -51,8 +51,9 @@
 
 (define (contains? s v)
     (cond ((empty? s) #f)
-          'YOUR-CODE-HERE
-          (else nil) ; replace this line
+          ((= (car s) v) #t)
+          ((< (car s) v) (contains? (cdr s) v))
+          (else #f) ; replace this line
           ))
 
 ; Equivalent Python code, for your reference:
