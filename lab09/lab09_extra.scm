@@ -3,7 +3,7 @@
 
 ; Q5
 (define lst
-  'YOUR-CODE-HERE
+  '((1) 2 (3 . 4) 5)
 )
 
 ; Q6
