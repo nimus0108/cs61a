@@ -7,23 +7,18 @@ test = {
         {
           'code': r"""
           scm> (how-many-dots '(1 2 3))
-          023f53b43f605b7580be5aa5c3e5ee7e
-          # locked
+          0
           scm> (how-many-dots '(1 2 . 3))
-          d7ab3c9f4f7487833d3cb935fc8c712a
-          # locked
+          1
           scm> (how-many-dots '((1 . 2) 3 . 4))
-          3940351fe1ecdc23ea60a8fdad9aa11d
-          # locked
+          2
           scm> (how-many-dots '((((((1 . 2) . 3) . 4) . 5) . 6) . 7))
-          17c904758d7c0462b49135eebe9c3ca4
-          # locked
+          6
           scm> (how-many-dots '(1 . (2 . (3 . (4 . (5 . (6 . (7))))))))
-          023f53b43f605b7580be5aa5c3e5ee7e
-          # locked
+          0
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': True,
