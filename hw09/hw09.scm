@@ -55,7 +55,7 @@
 (define (multiplicand p) (caddr p))
 
 (define (derive-sum expr var)
-  'YOUR-CODE-HERE
+  (make-sum (derive (addend expr) var) (derive (augend expr) var))
 )
 
 (define (derive-product expr var)
