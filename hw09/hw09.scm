@@ -1,11 +1,11 @@
 (define (how-many-dots s)
   (cond
     ((not (pair? s)) 0)
-    ((null? (cdr s)) (how-many-dots (car s)))
-    ((pair? (cdr s)) (+ 
-                       (how-many-dots (car s)) 
-                       (how-many-dots (cdr s))))
-    (else (+ (how-many-dots (car s)) 1))
+    (else (+ (how-many-dots (car s))
+             (how-many-dots (cdr s))
+             (if (not (or (pair? (cdr s)) (null? (cdr s)))) 1 0)
+          )
+    )
   )
 )
 
