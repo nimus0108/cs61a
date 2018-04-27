@@ -71,14 +71,11 @@
 
 ; Exponentiations are represented as lists that start with ^.
 (define (make-exp base exponent)
-  (if (and (integer? exponent) (>= exponent 0))
-      (cond
-        ((number? base) (expt base exponent))
-        ((=number? exponent 0) 1)
-        ((=number? exponent 1) base)
-        (else (list '^ base exponent))
-      )
-      'Error
+  (cond
+    ((and (number? base) (number? exponent)) (expt base exponent))
+    ((=number? exponent 0) 1)
+    ((=number? exponent 1) base)
+    (else (list '^ base exponent))
   )
 )
 
@@ -92,7 +89,7 @@
 
 (define (exp? exp)
   (and (list? exp) (eq? (car exp) '^)
-       (list? (cdr exp)) (integer? (exponent exp)) (>= (exponent exp) 2)
+       (list? (cdr exp))
   )
 )
 
@@ -103,7 +100,7 @@
   (make-product
     (make-product
       (exponent exp)
-      (make-exp (base exp) (- (exponent exp) 1))
+      (make-exp (base exp) (make-sum (exponent exp) -1))
     )
     (derive (base exp) var))
 )
