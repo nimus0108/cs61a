@@ -59,7 +59,14 @@
 )
 
 (define (derive-product expr var)
-  'YOUR-CODE-HERE
+  (make-sum 
+    (make-product
+      (derive (multiplier expr) var) (multiplicand expr)
+    )
+    (make-product
+      (derive (multiplicand expr) var) (multiplier expr)
+    )
+  )
 )
 
 ; Exponentiations are represented as lists that start with ^.
