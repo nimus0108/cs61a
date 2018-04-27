@@ -71,19 +71,29 @@
 
 ; Exponentiations are represented as lists that start with ^.
 (define (make-exp base exponent)
-  'YOUR-CODE-HERE
+  (if (and (integer? exponent) (>= exponent 0))
+      (cond
+        ((number? base) (expt base exponent))
+        ((=number? exponent 0) 1)
+        ((=number? exponent 1) base)
+        (else (list '^ base exponent))
+      )
+      'Error
+  )
 )
 
 (define (base exp)
-  'YOUR-CODE-HERE
+  (cadr exp)
 )
 
 (define (exponent exp)
-  'YOUR-CODE-HERE
+  (caddr exp)
 )
 
 (define (exp? exp)
-  'YOUR-CODE-HERE
+  (and (list? exp) (eq? (car exp) '^)
+       (list? (cdr exp)) (integer? (exponent exp)) (>= (exponent exp) 2)
+  )
 )
 
 (define x^2 (make-exp 'x 2))
