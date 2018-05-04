@@ -32,6 +32,10 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
     else:
         # BEGIN PROBLEM 5
         "*** YOUR CODE HERE ***"
+        fn = scheme_eval(first, env)
+        args = rest.map(lambda expr: scheme_eval(expr, env))
+
+        return scheme_apply(fn, args, env)
         # END PROBLEM 5
 
 def self_evaluating(expr):
@@ -156,7 +160,8 @@ class PrimitiveProcedure(Procedure):
         except TypeError as e:
             import re
 
-            pattern = r'\b(takes \d+ positional argument but \d+ were given)$'
+            pattern = r"\b(takes \d+ positional argument but \d+ were given|" \
+                + "missing \d+ required positional argument: '.+')$"
             matched = re.search(pattern, str(e))
 
             raise SchemeError(self.name + ' ' +matched.group(1))
