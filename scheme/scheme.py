@@ -59,7 +59,7 @@ def eval_all(expressions, env):
     # BEGIN PROBLEM 8
     if expressions == nil:
         return None
-    
+
     while expressions.second != nil:
         scheme_eval(expressions.first, env)
         expressions = expressions.second
@@ -265,6 +265,7 @@ def do_lambda_form(expressions, env):
     check_formals(formals)
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    return LambdaProcedure(formals, expressions.second, env)
     # END PROBLEM 9
 
 def do_if_form(expressions, env):
