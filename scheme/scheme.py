@@ -117,19 +117,9 @@ class Frame:
         child = Frame(self) # Create a new child with self as the parent
         # BEGIN PROBLEM 11
         "*** YOUR CODE HERE ***"
-        f, v = formals, vals
-        len_f, len_v = 0, 0
+        check_formals(formals)
 
-        while f != nil:
-            if not scheme_symbolp(f.first):
-                raise SchemeError('{} is not a symbol'.format(f.first))
-
-            len_f += 1
-            f = f.second
-
-        while v != nil:
-            len_v += 1
-            v = v.second
+        len_f, len_v = len(formals), len(vals)
 
         if len_f < len_v:
             raise SchemeError('Given too many vals')
