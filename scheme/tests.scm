@@ -60,7 +60,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Move the following (exit) line down the file to run additional tests. ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(exit)
+; (exit)
 
 
 ;;; 1.1.2
@@ -81,6 +81,8 @@ size
 (define circumference (* 2 pi radius))
 circumference
 ; expect 62.8318
+
+(exit)
 
 ;;; 1.1.4
 
