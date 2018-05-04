@@ -242,6 +242,8 @@ def do_quote_form(expressions, env):
     check_form(expressions, 1, 1)
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    # print(expressions)
+    return expressions.first
     # END PROBLEM 7
 
 def do_begin_form(expressions, env):
