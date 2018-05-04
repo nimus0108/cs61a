@@ -149,6 +149,17 @@ def read_tail(src):
         elif src.current() == '.':
             # BEGIN PROBLEM 2
             "*** YOUR CODE HERE ***"
+            # remove '.'
+            src.remove_front()
+
+            result = scheme_read(src)
+            val = src.current()
+
+            if val != ')':
+                raise SyntaxError('unexpected token: {0}; expected: )'.format(val))
+
+            src.remove_front()
+            return result
             # END PROBLEM 2
         else:
             # BEGIN PROBLEM 1
