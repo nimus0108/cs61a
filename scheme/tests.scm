@@ -111,7 +111,7 @@ circumference
 (f 5)
 ; expect 136
 
-(exit)
+; (exit)
 
 ;;; 1.1.6
 
