@@ -9,7 +9,23 @@
   'replace-this-line)
 
 (define (zip pairs)
-  'replace-this-line)
+  (if (null? pairs)
+    '(() ())
+    (let ((first (car pairs))
+          (rest (zip (cdr pairs)))
+         )
+         (cons (cons (car first) 
+                     (car rest)
+               )
+               (cons (cons (cadr first)
+                           (cadr rest)
+                     )
+                     nil
+               )
+         )
+    )
+  )
+)
 
 ;; Problem 17
 ;; Returns a list of two-element lists
@@ -71,32 +87,52 @@
 (define (let-to-lambda expr)
   (cond ((atom? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         expr
          ; END PROBLEM 19
          )
         ((quoted? expr)
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         ; (cons 'quote 
+               ; (let-to-lambda (cdr expr))
+         ; )
+         expr
          ; END PROBLEM 19
-         )
+        )
         ((or (lambda? expr)
              (define? expr))
          (let ((form   (car expr))
                (params (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+           (cons form (cons params (let-to-lambda body)))
            ; END PROBLEM 19
-           ))
+         )
+        )
         ((let? expr)
          (let ((values (cadr expr))
                (body   (cddr expr)))
            ; BEGIN PROBLEM 19
-           'replace-this-line
+           (if (list? values)
+             (let ((params_args (zip values)))
+                  (cons (cons 'lambda
+                              (cons (car params_args)
+                                    (let-to-lambda body)
+                              )
+                        )
+                        (let-to-lambda (cadr params_args))
+                  )
+             )
+             expr
+           )
            ; END PROBLEM 19
-           ))
+         )
+        )
         (else
          ; BEGIN PROBLEM 19
-         'replace-this-line
+         (cons (let-to-lambda (car expr))
+               (let-to-lambda (cdr expr))
+         )
          ; END PROBLEM 19
-         )))
+        )
+  )
+)
