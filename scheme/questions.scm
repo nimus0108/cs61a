@@ -32,9 +32,30 @@
 ;; List all ways to make change for TOTAL with DENOMS
 (define (list-change total denoms)
   ; BEGIN PROBLEM 18
-  'replace-this-line
+  (cond ((zero? total) '(()))
+        ((or (< total 0) (null? denoms)) nil)
+        (else (append (cons-all (car denoms)
+                                (list-change (- total (car denoms))
+                                             denoms
+                                )
+                      )
+                      (list-change total (cdr denoms))
+              )
+        )
   )
+)
   ; END PROBLEM 18
+
+(define (cons-all num lst)
+  ; num - the number added to the first place
+  ; lst - a list of list elements
+  (if (null? lst)
+    nil
+    (cons (append (cons num nil) (car lst))
+          (cons-all num (cdr lst))
+    )
+  )
+) 
 
 ;; Problem 19
 ;; Returns a function that checks if an expression is the special form FORM
