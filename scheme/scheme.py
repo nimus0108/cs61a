@@ -34,9 +34,13 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         "*** YOUR CODE HERE ***"
         fn = scheme_eval(first, env)
         check_procedure(fn)
-        args = rest.map(lambda expr: scheme_eval(expr, env))
 
-        return scheme_apply(fn, args, env)
+        if not isinstance(fn, MacroProcedure):
+            args = rest.map(lambda expr: scheme_eval(expr, env))
+            return scheme_apply(fn, args, env)
+        else:
+            # Apply MacroProcedure
+            return scheme_eval(fn.apply_macro(rest, env), env)
         # END PROBLEM 5
 
 def self_evaluating(expr):
@@ -384,8 +388,41 @@ def do_define_macro(expressions, env):
     """Evaluate a define-macro form."""
     # BEGIN Problem 21
     "*** YOUR CODE HERE ***"
+    check_form(expressions, 2)
+
+    target = expressions.first
+
+    if not isinstance(target, Pair):
+        raise SchemeError('Improper form for define-macro')
+
+    name, parameters, body = target.first, target.second, expressions.second
+
+    if not (scheme_symbolp(name) and all_symbol(parameters)):
+        raise SchemeError('Improper form for define-macro')
+
+    macro_procedure = MacroProcedure(parameters, body, env)
+    env.define(name, macro_procedure)
+
+    return name
     # END Problem 21
 
+def all_symbol(expressions):
+    ''' Check if EXPRESSIONS (a Pair) only contains symbols. Return True if it
+    only contains symbols, False otherwise.
+
+    >>> all_symbol(scheme_read(Buffer(tokenize_lines(["'(a b c)"]))).second.first)
+    True
+    >>> all_symbol(scheme_read(Buffer(tokenize_lines(["'(+ 1 2)"]))).second.first)
+    False
+    '''
+    # print(expressions)
+    while not expressions is nil:
+        if not scheme_symbolp(expressions.first):
+            return False
+
+        expressions = expressions.second
+
+    return True
 
 SPECIAL_FORMS = {
     'and': do_and_form,
