@@ -40,6 +40,13 @@ def trap(s, k):
     ValueError
     """
     "*** YOUR CODE HERE ***"
+    i = iter(s)
+
+    while k > 0:
+        yield next(i)
+        k -= 1
+
+    raise ValueError('No more values available!')
 
 # the naturals generator is used for testing scale and merge functions
 def naturals():
