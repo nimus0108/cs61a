@@ -136,3 +136,15 @@ def zip_generator(*iterables):
     [2, 5, 8]
     """
     "*** YOUR CODE HERE ***"
+    iterators = [iter(iterable) for iterable in iterables]
+
+    try:
+        while True:
+            result = []
+
+            for iterator in iterators:
+                result.append(next(iterator))
+
+            yield result
+    except StopIteration:
+        pass
