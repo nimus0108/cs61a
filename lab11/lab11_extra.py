@@ -112,6 +112,15 @@ def remainders_generator(m):
     11
     """
     "*** YOUR CODE HERE ***"
+    def remainders(r):
+        i = 0
+
+        while True:
+            yield i * m + r
+
+            i += 1
+
+    yield from [remainders(r) for r in range(m)]
 
 # Q9
 def zip_generator(*iterables):
