@@ -41,6 +41,20 @@ def repeated(t, k):
     """
     assert k > 1
     "*** YOUR CODE HERE ***"
+    t_iter = iter(t)
+    previous = next(t_iter)
+    repeated_times = 1
+
+    while repeated_times < k:
+        current = next(t_iter)
+
+        if current == previous:
+            repeated_times += 1
+        else:
+            previous = current
+            repeated_times = 1
+
+    return previous
 
 # Q7
 def merge(s0, s1):
