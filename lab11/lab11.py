@@ -14,7 +14,8 @@ def scale(s, k):
     >>> [next(m) for _ in range(5)]
     [2, 4, 6, 8, 10]
     """
-    "*** YOUR CODE HERE ***"
+    "*** YOUR CODE HERE ***" 
+    yield from map(lambda x: k * x, s)
 
 # Q2
 def trap(s, k):
