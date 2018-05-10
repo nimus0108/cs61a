@@ -6,7 +6,8 @@
 )
 
 (define (scale-stream s k)
-  'YOUR-CODE-HERE
+  (cons-stream (* (car s) k)
+               (scale-stream (cdr-stream s) k))
 )
 
 (define (has-cycle s)
