@@ -11,7 +11,18 @@
 )
 
 (define (has-cycle s)
-  'YOUR-CODE-HERE
+  (define (has-cycle-helper slow fast)
+          (cond ((eq? slow fast) #t)
+                ((or (null? (cdr-stream fast))
+                  (null? (cdr-stream (cdr-stream fast)))) #f)
+                (else (has-cycle-helper (cdr-stream slow)
+                        (cdr-stream (cdr-stream fast))))
+          )
+  )
+  (if (or (null? s) (null? (cdr-stream s)))
+      #f
+      (has-cycle-helper s (cdr-stream s))
+  )
 )
 (define (has-cycle-constant s)
   'YOUR-CODE-HERE
