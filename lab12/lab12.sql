@@ -12,4 +12,5 @@ CREATE TABLE smallest_int AS
 
 -- Q4
 CREATE TABLE matchmaker AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT a.pet, a.song, a.color, b.color FROM students AS a, students AS b
+    WHERE a.pet = b.pet AND a.song = b.song AND a.time < b.time;
