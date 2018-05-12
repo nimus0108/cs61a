@@ -2,7 +2,9 @@
 
 -- Q5
 CREATE TABLE greatstudents AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT a.date, a.color, a.pet, a.number, b.number
+    FROM students AS a, fa17students AS b
+    WHERE a.date = b.date AND a.color = b.color AND a.pet = b.pet;
 
 -- Q6
 CREATE TABLE sevens AS
