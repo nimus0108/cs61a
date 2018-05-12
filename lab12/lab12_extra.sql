@@ -41,4 +41,6 @@ CREATE TABLE obedienceimages AS
 
 -- Q8
 CREATE TABLE smallest_int_count AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT smallest, COUNT(*) AS count
+    FROM students GROUP BY smallest
+    ORDER BY smallest ASC;
