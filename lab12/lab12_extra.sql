@@ -13,27 +13,31 @@ CREATE TABLE sevens AS
 
 -- Q7
 CREATE TABLE fa17favnum AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT number, COUNT(*) as count FROM fa17students GROUP BY number
+    ORDER BY count DESC LIMIT 1;
 
 
 CREATE TABLE fa17favpets AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT pet, COUNT(*) as count FROM fa17students GROUP BY pet
+    ORDER BY count DESC LIMIT 10;
 
 
 CREATE TABLE sp18favpets AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT pet, COUNT(*) as count FROM students GROUP BY pet
+    ORDER BY count DESC LIMIT 10;
 
 
 CREATE TABLE sp18dog AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT 'dog', COUNT(*) FROM students WHERE pet = 'dog';
 
 
 CREATE TABLE sp18alldogs AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT 'dog', COUNT(*) FROM students WHERE pet LIKE '%dog%';
 
 
 CREATE TABLE obedienceimages AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT seven, denero, COUNT(*) FROM students
+    WHERE seven = '7' GROUP BY denero;
 
 -- Q8
 CREATE TABLE smallest_int_count AS
