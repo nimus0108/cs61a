@@ -7,7 +7,8 @@ CREATE TABLE obedience AS
 
 -- Q3
 CREATE TABLE smallest_int AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT time, smallest FROM students
+    WHERE smallest > 15 ORDER BY smallest ASC LIMIT 20;
 
 -- Q4
 CREATE TABLE matchmaker AS
