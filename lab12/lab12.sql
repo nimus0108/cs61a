@@ -3,7 +3,7 @@
 
 -- Q2
 CREATE TABLE obedience AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT seven, denero FROM students;
 
 -- Q3
 CREATE TABLE smallest_int AS
