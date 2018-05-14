@@ -41,11 +41,14 @@ CREATE TABLE by_height AS
 
 -- Filling out this helper table is optional
 CREATE TABLE siblings AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT a.child AS first, b.child AS second FROM parents AS a, parents AS b
+    WHERE a.parent = b.parent AND a.child < b.child;
 
 -- Sentences about siblings that are the same size
 CREATE TABLE sentences AS
-  SELECT "REPLACE THIS LINE WITH YOUR SOLUTION";
+  SELECT a.first || " and " || a.second || " are " || b.size || " siblings" AS sentence
+    FROM siblings AS a, size_of_dogs AS b, size_of_dogs AS c
+    WHERE a.first = b.name AND a.second = c.name AND b.size = c.size;
 
 -- Ways to stack 4 dogs to a height of at least 170, ordered by total height
 CREATE TABLE stacks_helper(dogs, stack_height, last_height);
