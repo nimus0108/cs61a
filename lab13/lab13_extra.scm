@@ -32,7 +32,20 @@
 
 ; Q5
 (define (insert n s)
-  'YOUR-CODE-HERE
+  (define (insert-helper lt gt)
+    (if (or (null? gt) (<= n (car gt)))
+        (append (reverse lt nil) (cons n gt))
+        (insert-helper (cons (car gt) lt) (cdr gt))
+    )
+  )
+  (define (reverse lst ret)
+    (if (null? lst)
+        ret
+        (reverse (cdr lst) (cons (car lst) ret))
+    )
+  )
+
+  (insert-helper nil s)
 )
 
 ; Q6
