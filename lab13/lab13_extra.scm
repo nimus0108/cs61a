@@ -1,6 +1,22 @@
 ; Q4
 (define (rle s)
-  'YOUR-CODE-HERE
+  (define (rle-helper s previous ct)
+    (cond ((null? s)
+           (if (zero? ct)
+               nil
+               (cons-stream (list previous ct) nil)
+           )
+          )
+          ((not (equal? previous (car s)))
+           (cons-stream (list previous ct) (rle s))
+          )
+          (else (rle-helper (cdr-stream s) previous (+ 1 ct)))
+    )
+  )
+  (if (null? s)
+    nil
+    (rle-helper s (car s) 0)
+  )
 )
 
 ; Q4 testing functions
