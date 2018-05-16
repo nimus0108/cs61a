@@ -20,3 +20,8 @@ def permutations(lst):
         yield []
         return
     "*** YOUR CODE HERE ***"
+    for i in range(len(lst)):
+        value = lst[i]
+
+        for permutation in permutations(lst[:i] + lst[i+1:]):
+            yield [value] + permutation
