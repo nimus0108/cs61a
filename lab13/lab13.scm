@@ -14,5 +14,11 @@
 
 ; Q2
 (define (tail-replicate x n)
-  'YOUR-CODE-HERE
+  (define (tail-replicate-helper ret ct)
+    (if (zero? ct)
+      ret
+      (tail-replicate-helper (cons x ret) (- ct 1))
+    )
+  )
+  (tail-replicate-helper nil n)
 )
