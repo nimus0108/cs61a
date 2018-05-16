@@ -50,8 +50,13 @@
 
 ; Q6
 (define (deep-map fn s)
-  'YOUR-CODE-HERE
-  nil
+  (if (null? s)
+      nil
+      (if (list? (car s))
+          (cons (deep-map fn (car s)) (deep-map fn (cdr s)))
+          (cons (fn (car s)) (deep-map fn (cdr s)))
+      )
+  )
 )
 
 ; Q7
