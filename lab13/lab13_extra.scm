@@ -34,14 +34,14 @@
 (define (insert n s)
   (define (insert-helper lt gt)
     (if (or (null? gt) (<= n (car gt)))
-        (append (reverse lt nil) (cons n gt))
+        (app lt (cons n gt))
         (insert-helper (cons (car gt) lt) (cdr gt))
     )
   )
-  (define (reverse lst ret)
+  (define (app lst ret)
     (if (null? lst)
         ret
-        (reverse (cdr lst) (cons (car lst) ret))
+        (app (cdr lst) (cons (car lst) ret))
     )
   )
 
