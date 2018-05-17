@@ -74,17 +74,39 @@
 
 ; Implementing and using these helper procedures is optional. You are allowed
 ; to delete them.
-(define (unique s)
-  'YOUR-CODE-HERE
-  nil
+(define (unique? name s)
+  (if (null? s)
+      #t
+      (if (equal? name (car (car s)))
+          #f
+          (unique? name (cdr s))
+      )
+  )
 )
 
 (define (count name s)
-  'YOUR-CODE-HERE
-  nil
+  (map (lambda (record) 
+               (if (equal? name (car record))
+                   (cons name (+ 1 (cdr record)))
+                   record
+               )
+       )
+       s
+  )
 )
 
 (define (tally names)
-  'YOUR-CODE-HERE
-  nil
+  (define (tally-helper ret names)
+    (if (null? names)
+        ret
+        (let ((first (car names)) (rest (cdr names)))
+          (if (unique? first ret)
+              (tally-helper (append ret (list (cons first 1)))
+                            rest)
+              (tally-helper (count first ret) rest)
+          )
+        )
+    )
+  )
+  (tally-helper nil names)
 )
