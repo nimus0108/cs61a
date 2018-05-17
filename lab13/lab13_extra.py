@@ -40,3 +40,8 @@ def make_generators_generator(g):
     5
     """
     "*** YOUR CODE HERE ***"
+    cache = []
+
+    for item in g():
+        cache.append(item)
+        yield iter(cache)
